@@ -1,0 +1,4 @@
+adelineserv ansible_host=10.5.169.239 ansible_user=root
+
+[wordpress]
+adeline_serv
