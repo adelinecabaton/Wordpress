@@ -1,5 +1,6 @@
 ---
-- name: ping machine cible
+  
+  - name: ping machine cible
     hosts: wordpress
     become: yes
     tasks:
