@@ -75,11 +75,6 @@
           src: templates/mysql/my.cnf.j2
           dest: /root/.my.cnf
 
-      - name: Create mysqld.cnf
-        template:
-          src: templates/mysql/mysqld.cnf.j2
-          dest: /root/.my.cnf
-
       - name: Install nginx
         package:
           name: nginx
@@ -94,4 +89,3 @@
         template:
           src: templates/nginx/default.j2
           dest: /etc/nginx/sites-available/default
-          
