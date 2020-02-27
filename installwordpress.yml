@@ -46,15 +46,18 @@
         mysql_user:
           name: ""
           state: absent
+        when: mysql_new_root_pass.changed
 
       - name: Remove test database
         mysql_db:
           name: test
           state: absent
+        when: mysql_new_root_pass.changed
 
       - name: Output new root password
         debug:
           msg: "New root password is {{mysql_new_root_pass.stdout}}"
+        when: mysql_new_root_pass.changed
 
       - name: Update root password
         mysql_user:
@@ -71,3 +74,24 @@
         template:
           src: templates/mysql/my.cnf.j2
           dest: /root/.my.cnf
+
+      - name: Create mysqld.cnf
+        template:
+          src: templates/mysql/mysqld.cnf.j2
+          dest: /root/.my.cnf
+
+      - name: Install nginx
+        package:
+          name: nginx
+          state: present
+
+      - name: Start nginx
+        service:
+          name: nginx
+          state: started
+
+      - name: Create nginx config
+        template:
+          src: templates/nginx/default.j2
+          dest: /etc/nginx/sites-available/default
+          
