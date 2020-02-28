@@ -106,7 +106,7 @@
         - name: Unzip WordPress
           unarchive:
             src: files/wordpress.zip
-            dest: /tmp
+            dest: /tmp/
             creates: /tmp/wordpress/wp-settings.php
         - name: Create project folder
           file:
